@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
 
 The flag is:
 
-![flag](screenshots\justlisten\result.PNG)
+![flag](screenshots/justlisten/result.PNG)
 
 
 
