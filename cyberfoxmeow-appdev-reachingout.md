@@ -17,13 +17,13 @@ Firstly, I specify the <uses-permission> element in the app's manifest with `and
 
 Then I set a function ``private void netRequest()` to send GET and POST request to the URL. The GET request is sent to http://10.0.2.2:31337 , with the response below:
 
-<img src="screenshots/reachingout/1.png" alt="flag" style="zoom:60%;" />
+<img src="screenshots/reachingout/1.PNG" alt="flag" style="zoom:60%;" />
 
 
 
 Then the GET request is sent to http://10.0.2.2:31337/flag , with the response below:
 
-<img src="screenshots/reachingout/2.png" alt="flag" style="zoom:60%;" />
+<img src="screenshots/reachingout/2.PNG" alt="flag" style="zoom:60%;" />
 
 
 
@@ -33,7 +33,7 @@ After POST these values to http://10.0.2.2:31337/flag, the flag is got.
 
 The flag is:
 
-<img src="screenshots/reachingout/3.png" alt="flag" style="zoom:60%;" />
+<img src="screenshots/reachingout/3.PNG" alt="flag" style="zoom:60%;" />
 
 
 
