@@ -42,8 +42,8 @@ public class MessengerService extends Service {
                 case MSG_UNREGISTER_CLIENT:
                     break;
                 case MSG_SET_VALUE:
-                    Log.i("MOBISEC", "MSG_SET_VALUE:  msg.arg1  " + msg.arg1 );
-                    Log.i("MOBISEC", "MSG_SET_VALUE:  msg.arg2" + msg.arg2);
+                    Log.i("MOBISEC", "MSG_SET_VALUE:  msg.arg1   " + msg.arg1 );
+                    Log.i("MOBISEC", "MSG_SET_VALUE:  msg.arg2   " + msg.arg2);
                     break;
                 case MSG_GET_FLAG:
                     Bundle b = (Bundle) msg.obj;
