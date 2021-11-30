@@ -85,7 +85,7 @@ Then from the second if statement in function checkFlag, and from the function g
 
 
 
-The full steps can be referred to [misc\_reversing\babyrev\steps.xlsx](\misc\_reversing\babyrev\steps.xlsx)
+The full steps can be referred to [misc/_reversing/babyrev/steps.xlsx](misc/_reversing/babyrev/steps.xlsx)
 
 
 
