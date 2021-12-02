@@ -47,7 +47,7 @@ Finally, I get the pin:
 
 
 
-The codes refer to [_reversing\pincode\src\getpin_java](_reversing\pincode\src\getpin_java)
+The codes refer to [_reversing/pincode/src/getpin_java](_reversing/pincode/src/getpin_java)
 
 Then  I put the pin into the url, and I get the flag.
 
