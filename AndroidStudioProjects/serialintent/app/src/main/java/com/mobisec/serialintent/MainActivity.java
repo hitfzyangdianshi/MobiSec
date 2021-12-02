@@ -3,6 +3,10 @@ package com.mobisec.serialintent;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
+import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.ResolveInfo;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -11,10 +15,17 @@ import android.content.Intent;
 import com.mobisec.serialintent.R;
 import com.mobisec.serialintent.FlagContainer;
 
+import java.io.Serializable;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.Arrays;
+import java.util.List;
+
+import dalvik.system.DexClassLoader;
+import dalvik.system.PathClassLoader;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements Serializable {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +42,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        Log.i("MOBISEC","data.toString()  "+data.toString());
+       /* Log.i("MOBISEC","data.toString()  "+data.toString());
 
         Bundle bundle = data.getExtras();
         Log.i("MOBISEC","bundle.toString()  "+bundle.toString());
@@ -94,39 +105,32 @@ public class MainActivity extends AppCompatActivity {
 
        // Log.i("MOBISEC", requestCode + "   " + resultCode + ", content=" + ( (FlagContainer) (bundle.get("flag")) ).getFlag());
 
-      /*  ClassLoader classloader = new ClassLoader() {
-            @Override
-            public Class<?> loadClass(String name) throws ClassNotFoundException {
-                return super.loadClass(name);
-            }
-        };
-        Class <?> c= null;
-        try {
-            c = (Class<?>) classloader.loadClass("com.mobisec.serialintent.FlagContainer");
-        } catch (ClassNotFoundException e) {
-            e.printStackTrace();
-            Log.i("MOBISEC", " ClassNotFoundException   " + e.toString());
-        }
-        Method m = null;
-        try {
-            m =c.getDeclaredMethod("getFlag");
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-            Log.i("MOBISEC", " NoSuchMethodException   " + e.toString());
-        }
-        m.setAccessible(true);
-        bundle.setClassLoader(classloader);
-        try {
-            String f=(String)m.invoke(bundle.get("flag"));
-            Log.i("MOBISEC",f);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            Log.i("MOBISEC", " IllegalAccessException   " + e.toString());
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-            Log.i("MOBISEC", " InvocationTargetException   " + e.toString());
-        }*/
+*/
 
+        try{
+            PackageManager pm = getPackageManager();
+          //  @SuppressLint("QueryPermissionsNeeded") List<ResolveInfo> resolveinfoes =  pm.queryIntentActivities(data, 0);
+          //  ActivityInfo actInfo = resolveinfoes.get(0).activityInfo;
+            String apkPath=pm.getApplicationInfo("com.mobisec.serialintent",0).sourceDir;
+            PathClassLoader classLoader=new PathClassLoader(
+                    apkPath,
+                //    getApplicationInfo().dataDir,
+                //    actInfo.applicationInfo.nativeLibraryDir,
+                    ClassLoader.getSystemClassLoader()  //   this.getClass().getClassLoader()
+            );
+          //ClassLoader classLoader =new ClassLoader();
+
+            Class<?> clazz  =(Class<?>) classLoader.loadClass("com.mobisec.serialintent.FlagContainer");
+            //Class<?> cls=Class.forName("com.mobisec.serialintent.FlagContainer");
+            Method method  =clazz .getDeclaredMethod("getFlag");
+            method .setAccessible(true);
+            Bundle bundle=data.getExtras();
+            bundle.setClassLoader(classLoader);
+            String result = (String) method.invoke(bundle.get("flag"));
+            Log.i("MOBISEC", result);
+        }  catch (Exception e) {
+            Log.i("MOBISEC",e.toString());
+        }
 
     }
 }
@@ -138,3 +142,21 @@ public class MainActivity extends AppCompatActivity {
 11-16 18:48:26.689  4507  4507 I MOBISEC :  e   java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String java.lang.Object.toString()' on a null object reference
 
 * */
+
+/*Output of logcat:
+09-29 16:40:45.159  4452  4452 E MOBISEC : SerialIntent:onCreate
+09-29 16:40:45.159  4452  4452 E MOBISEC : flag set correctly
+Output of logcat:
+09-29 16:40:46.735  4452  4452 E MOBISEC : shuffling
+09-29 16:40:46.740  4452  4452 E MOBISEC : sending back intent
+09-29 16:40:46.870  4486  4486 I MOBISEC : data.toString()  Intent { (has extras) }
+09-29 16:40:46.870  4486  4486 I MOBISEC : bundle.toString()  Bundle[mParcelledData.dataSize=804]
+09-29 16:40:46.878  4486  4486 I MOBISEC :  e bundle.keySet().size()  java.lang.RuntimeException: Parcelable encountered IOException reading a Serializable object (name = com.mobisec.serialintent.FlagContainer)
+09-29 16:40:46.878  4486  4486 I MOBISEC :  e getClass().getName())  java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.Class java.lang.Object.getClass()' on a null object reference
+09-29 16:40:46.878  4486  4486 I MOBISEC :  e .toString()  java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String java.lang.Object.toString()' on a null object reference
+09-29 16:40:46.878  4486  4486 I MOBISEC :  fc  bundle.getSerializable java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String com.mobisec.serialintent.FlagContainer.getFlag()' on a null object reference
+09-29 16:40:46.879  4486  4486 I MOBISEC :  fc getIntent().getSerializableExtra  java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String com.mobisec.serialintent.FlagContainer.getFlag()' on a null object reference
+09-29 16:40:46.879  4486  4486 I MOBISEC :  fcbundle  java.lang.NullPointerException: Attempt to invoke virtual method 'java.lang.String com.mobisec.serialintent.FlagContainer.getFlag()' on a null object reference
+09-29 16:40:46.879  4486  4486 I MOBISEC :  getByteArray  null
+09-29 16:40:46.880  4486  4486 I MOBISEC :  ClassNotFoundException   java.lang.ClassNotFoundException: com.mobisec.serialintent.FlagContainer
+*/
