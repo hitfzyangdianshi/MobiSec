@@ -18,7 +18,7 @@ From the above codes, we can get that
 - the flag contains a string, with the character `-`, and a number of 6 digits.
 - the flag checker calls the library "native-lib".
 
-Then, I use ghidra to get the reverse codes of the [libnative-lib.so](_reversing/goingnative/project1/app/src/main/lib/x86_64/libnative-lib.so). 
+Then, I use [ghidra](https://github.com/NationalSecurityAgency/ghidra) to get the reverse codes of the [libnative-lib.so](_reversing/goingnative/project1/app/src/main/lib/x86_64/libnative-lib.so). 
 
 
 
