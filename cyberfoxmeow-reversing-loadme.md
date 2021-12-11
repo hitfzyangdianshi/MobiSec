@@ -79,7 +79,7 @@ After reversing the codes of the file logo.dex, the function check(flag) gives u
 
 ### N/A
 
-the codes refers to [_reversing/loadme/src/loadme_rev](_reversing/loadme/src/loadme_rev)
+the codes refers to [_reversing/loadme/src/loadme_rev](_reversing/loadme/src/loadme_rev), and assets refer to [misc/\_reversing/loadme](misc/\_reversing/loadme).
 
 
 
