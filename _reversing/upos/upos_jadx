@@ -1,0 +1,79 @@
+{
+  "projectVersion": 1,
+  "files": [
+    "E:\\eurecom\\MobiSec\\app dev\\misc\\_reversing\\upos.apk"
+  ],
+  "treeExpansions": [
+    [
+      "com.mobisec.upos",
+      "源代码",
+      "upos.apk"
+    ],
+    null,
+    [
+      "com.mobisec.upos.FC",
+      "com.mobisec.upos",
+      "源代码",
+      "upos.apk"
+    ],
+    [
+      "com.mobisec.upos.MainActivity",
+      "com.mobisec.upos",
+      "源代码",
+      "upos.apk"
+    ],
+    [
+      "com.mobisec.upos.Streamer",
+      "com.mobisec.upos",
+      "源代码",
+      "upos.apk"
+    ],
+    [
+      "com.mobisec.upos.R",
+      "com.mobisec.upos",
+      "源代码",
+      "upos.apk"
+    ],
+    [
+      "资源文件",
+      "upos.apk"
+    ],
+    [
+      "META-INF",
+      "资源文件",
+      "upos.apk"
+    ],
+    [
+      "assets",
+      "资源文件",
+      "upos.apk"
+    ]
+  ],
+  "codeData": {
+    "comments": [],
+    "renames": []
+  },
+  "openTabs": [
+    {
+      "type": "class",
+      "tabPath": "com.mobisec.upos.FC",
+      "subPath": "java",
+      "caret": 8904,
+      "view": {
+        "x": 0,
+        "y": 2036
+      }
+    },
+    {
+      "type": "class",
+      "tabPath": "com.mobisec.upos.Streamer",
+      "subPath": "java",
+      "caret": 2173,
+      "view": {
+        "x": 0,
+        "y": 682
+      }
+    }
+  ],
+  "activeTab": 0
+}
