@@ -8,7 +8,7 @@ The flag is announced on the system with a broadcast intent with action `com.mob
 
 I've solved the challenge by developing an app with a broadcast receiver. 
 
-Firstly, I specify the <receiver> element in the app's manifest. The <receiver> element is included in the <application>
+Firstly, I specify the &lt;receiver&gt; element in the app's manifest. The &lt;receiver&gt; element is included in the &lt;application&gt;
 
 ```xml
 <receiver android:name=".MyBroadcastReceiver"  android:exported="true" android:enabled="true">

@@ -8,7 +8,7 @@ There is an HTTP server listening on 10.0.2.2:31337 (reachable from within the e
 
 I've solved the challenge by developing an app to send GET and POST request to the server
 
-Firstly, I specify the <uses-permission> element in the app's manifest with `android.permission.ACCESS_NETWORK_STATE` and `android.permission.INTERNET` to give permission of accessing the internet.
+Firstly, I specify the &lt;uses-permission&gt; element in the app's manifest with `android.permission.ACCESS_NETWORK_STATE` and `android.permission.INTERNET` to give permission of accessing the internet.
 
 ```xml
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
